@@ -1,4 +1,4 @@
-import ServicesSection from "@/components/service/ServicesSection";
+import ServicesSection from "../../components/service/ServicesSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
