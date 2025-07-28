@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "استعرض خدماتنا المتميزة في مجال الأمن والحماية والتطوير العقاري",
 };
 
-export default function ServicesPage() {
+export default function ServicesPageSeller() {
   return <ServicesSection/>;
 }
