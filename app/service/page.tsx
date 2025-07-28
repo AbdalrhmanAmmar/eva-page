@@ -1,4 +1,4 @@
-import ServicesSection from "../../components/service/ServicesSection";
+import ServiceClient from "../../components/service/ServiceClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPageSeller() {
-  return <ServicesSection/>;
+  return <ServiceClient/>;
 }
