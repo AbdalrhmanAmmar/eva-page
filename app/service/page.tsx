@@ -1,4 +1,4 @@
-import ServiceClient from "../../components/service/ServiceClient";
+import ServiceClient from "@/components/service/ServiceClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
