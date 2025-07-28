@@ -1,0 +1,57 @@
+# ========================
+# 📦 Dependencies
+# ========================
+node_modules/
+.pnp/
+.pnp.js
+
+# ========================
+# 🧪 Testing
+# ========================
+coverage/
+
+# ========================
+# ⚙️ Next.js build
+# ========================
+.next/
+out/
+build/
+
+# ========================
+# ⚠️ Misc
+# ========================
+.DS_Store
+*.pem
+
+# ========================
+# 🐛 Logs
+# ========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========================
+# 🔐 Environment variables
+# ========================
+.env
+.env*.local
+
+# ========================
+# ▲ Vercel
+# ========================
+.vercel/
+
+# ========================
+# 🟦 TypeScript
+# ========================
+*.tsbuildinfo
+next-env.d.ts
+
+# ========================
+# 📁 Folders to ignore
+# ========================
+components/dashboard/
+components/service/
+app/dashboard/
+app/dashboard/layout.tsx
+app/dashboard/page.tsx
