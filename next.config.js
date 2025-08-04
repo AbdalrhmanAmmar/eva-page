@@ -15,22 +15,20 @@ const nextConfig = {
         port: '4000',
         pathname: '/uploads/**',
       },
-     {
+      {
         protocol: 'https',
         hostname: 'eva-page-5mw5-eight.vercel.app',
-        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '*.vercel.app',
-        pathname: '/**',
+        hostname: '**.vercel.app', // السماح بجميع نطاقات Vercel
       }
     ],
     domains: [
       'eva-page-5mw5-eight.vercel.app',
       'localhost'
     ],
-     formats: ['image/avif', 'image/webp', 'image/jpeg', 'image/png'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
