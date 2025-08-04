@@ -1,15 +1,18 @@
 "use client"
 
-import { X, Send } from 'lucide-react';
+import { X, Send, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { FaWhatsapp } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   
   const phoneNumber = "966123456789"; // استبدل برقمك
   const defaultMessage = "مرحبا كيف يمكننا مساعدتك؟"; // الرسالة الافتراضية
@@ -46,13 +49,17 @@ const WhatsAppButton = () => {
   const sendMessage = () => {
     if (!message.trim()) return;
     
-    const finalMessage = message || defaultMessage;
-    const encodedMessage = encodeURIComponent(finalMessage);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    setIsRedirecting(true);
     
-    window.open(whatsappUrl, '_blank');
-    setMessage('');
-    setIsOpen(false);
+    // انتظر 3 ثواني قبل التوجيه
+    setTimeout(() => {
+      const finalMessage = message || defaultMessage;
+      const encodedMessage = encodeURIComponent(finalMessage);
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      
+      // الانتقال إلى صفحة التحميل الوسيطة
+      router.push(`/whatsapp-redirect?url=${encodeURIComponent(whatsappUrl)}`);
+    }, 3000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -64,10 +71,10 @@ const WhatsAppButton = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50" ref={chatRef}>
+    <div className="fixed lg:bottom-6 right-6 z-50 bottom-16" ref={chatRef}>
       {isOpen ? (
         <div className="w-80 bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-          <div className="bg-[#25D366] text-white p-3 flex justify-between items-center">
+          <div className="bg-yellow-500 text-white p-3 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Image
                 src="/images/32X32 أسود بدون خلفية-01.png"
@@ -87,7 +94,7 @@ const WhatsAppButton = () => {
             </button>
           </div>
           
-          <div className="p-4 bg-gray-50 h-40 overflow-y-auto">
+          <div className="p-4 bg-gray-50 h-60 overflow-y-auto">
             <div className="flex flex-col items-center mb-2">
               <Image
                 src="/images/32X32 أسود بدون خلفية-01.png"
@@ -96,9 +103,9 @@ const WhatsAppButton = () => {
                 height={64}
                 className="w-16 h-16 object-contain mb-2"
               />
-              <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+              <div className="btn-gradient text-green-800 px-3 py-1 rounded-full text-sm font-medium flex items-center">
                 <span className="relative flex h-2 w-2 mr-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full btnopacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
                 </span>
                 متصل الآن
@@ -120,12 +127,18 @@ const WhatsAppButton = () => {
               onKeyPress={handleKeyPress}
               placeholder="اكتب رسالتك هنا..."
               className="flex-1 border border-gray-300 rounded-l-lg px-2 py-2 focus:outline-none focus:ring-1 focus:ring-[#25D366]"
+              disabled={isRedirecting}
             />
             <button
               onClick={sendMessage}
-              className="bg-[#25D366] text-white px-4 rounded-r-lg hover:bg-[#128C7E] transition-colors"
+              disabled={isRedirecting}
+              className="btn-gradient text-white px-4 rounded-r-lg hover:bg-[#128C7E] transition-colors flex items-center justify-center"
             >
-              <Send className="h-5 w-5" />
+              {isRedirecting ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : (
+                <Send className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>

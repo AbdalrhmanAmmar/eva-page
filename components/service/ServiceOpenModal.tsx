@@ -62,7 +62,7 @@ function ServiceOpenModal({ isOpen, onClose, serviceTitle }: ServiceOpenModalPro
       }
 
       toast.success("تم إرسال الطلب بنجاح")
-      router.push(`/payment`)
+      router.push(`/RequestConfirmation`)
       form.reset()
       onClose()
     } catch (error: any) {

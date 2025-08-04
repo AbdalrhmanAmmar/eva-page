@@ -20,6 +20,8 @@ import {
 import { FaTiktok,FaWhatsapp,FaSnapchatGhost  } from "react-icons/fa";
 import { dir } from "console";
 import ContactForm from "./ContactForm";
+import { useRef,useEffect } from "react";
+import { useScrollStore } from "@/stores/scrollStore";
 
 
 const services = [
@@ -31,7 +33,7 @@ const services = [
 const contactInfo = [
   {
     icon: MapPin,
-    label: "المملكة العربية السعودية، الرياض",
+    label: "المملكة العربية السعودية، الرياض, حي الفيحاء – طريق ابن ماجة",
     href: "#",
   },
   {
@@ -101,8 +103,17 @@ const socialLinks = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+    const footerRef = useRef<HTMLElement>(null);
+  const setFooterRef = useScrollStore((state) => state.setFooterRef);
+
+    useEffect(() => {
+    if (footerRef.current) {
+      setFooterRef(footerRef.current);
+    }
+  }, [setFooterRef]);
+
   return (
-    <footer className="bg-background border-t border-primary/10 ">
+    <footer  ref={footerRef} className="bg-background border-t border-primary/10 ">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -114,13 +125,15 @@ export default function Footer() {
             className="space-y-4 order-1"
           >
             <Link href="/" className="block">
-              <Image
-                src="/images/blackrm.png" // Update with your logo path
-                alt="إيفاء Logo"
-                width={120}
-                height={120}
-                className="w-auto h-24 md:none m-auto"
-              />
+       <Image
+  src="/images/blackrm.png"
+  alt="إيفاء Logo"
+  width={120}
+  height={120}
+  className="w-auto h-24 object-contain" // الأهم هنا
+  quality={100} // لضمان الجودة العالية
+  priority // إذا كانت الصورة فوق الطية
+/>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               نقدم حلولاً متكاملة في مجالات الأمن والحماية والتطوير العقاري وإدارة الأملاك، مع التركيز على الابتكار والجودة.
@@ -209,9 +222,10 @@ export default function Footer() {
             transition={{ delay: 0.3 }}
             className="space-y-4 order-2 md:order-4"
           >
-            <h3 className="text-lg font-semibold text-foreground mb-6">ارسل رساله</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-6">احصل على عرض سعر</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              قم برسال رساله تضمن الخدمه التي تريدها وسنقوم بالتواصل معك في أقرب وقت ممكن.
+              {/* قم بارسال رساله تضمن الخدمه التي تريدها وسنقوم بالتواصل معك في أقرب وقت ممكن. */}
+              قم بارسال رساله تضمن الحدمة التي تريدها وسنقوم بالتواصل معك في أقرب وقت ممكن
             </p>
              <ContactForm />
           </motion.div>

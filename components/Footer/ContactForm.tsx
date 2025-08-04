@@ -92,7 +92,7 @@ export default function ContactForm() {
           name="Details"
           value={formData.Details}
           onChange={handleChange}
-          placeholder="تفاصيل الرسالة"
+          placeholder="تفاصيل الخدمه التي تريدها"
           aria-label="تفاصيل الرسالة"
           rows={3}
           className="w-full px-4 py-2 bg-primary/5 border border-primary/10 rounded-lg resize-none focus:outline-none focus:border-primary transition-colors"

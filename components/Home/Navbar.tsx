@@ -1,14 +1,27 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Shield, User, Home, Info, Box, Phone } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/stores/authStore';
 import LogoutBtn from '../Auth/LogoutBtn';
 import { useRouter } from 'next/navigation';
+import { useScrollStore } from '@/stores/scrollStore';
+import Image from 'next/image';
 
 const Navbar = () => {
+    const footerRef = useScrollStore((state) => state.footerRef);
+
+      const scrollToFooter = () => {
+    if (footerRef) {
+      footerRef.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'end'
+      });
+    }
+  };
+
   const router = useRouter();
   const token = useAuthStore((state) => state.token);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,6 +47,8 @@ const Navbar = () => {
     { href: "/info", label: "تواصل معنا", icon: Phone },
   ];
 
+
+
   return (
     <>
       {/* Desktop Navbar */}
@@ -46,9 +61,17 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center space-x-4 space-x-reverse">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
+<div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary overflow-hidden">
+  <Image
+    src="/images/blackrm.png"
+    alt="إيفاء Logo"
+    width={40}  // تخفيض حجم الصورة الأصلية لتناسب المساحة
+    height={40}
+    className="w-full h-full object-cover"  // الأهم هنا
+    quality={100}
+    priority
+  />
+</div>
               <div className="text-2xl font-bold text-gradient">EVA</div>
             </div>
 
@@ -80,7 +103,7 @@ const Navbar = () => {
                   تسجيل الدخول
                 </Button>
               )}
-              <Button className="btn-gradient">
+              <Button onClick={scrollToFooter} className="btn-gradient">
                 احصل على عرض
               </Button>
             </div>
