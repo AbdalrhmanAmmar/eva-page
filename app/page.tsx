@@ -2,6 +2,7 @@ import AboutUs from "@/components/Home/AboutUs";
 import WhyChooseUs from "@/components/Home/chooseUs";
 import CustomerReviews from "@/components/Home/CustomerReviews";
 import HeroSection from "@/components/Home/HeroSection";
+import { OurClients } from "@/components/Home/OurClient";
 import ServicesSection from "@/components/Home/ServicesSection";
 import { Metadata } from "next";
 
@@ -16,6 +17,7 @@ export default function ServicesPage() {
   <AboutUs/>
   <WhyChooseUs/>
   <ServicesSection/>
+  <OurClients/>
   <CustomerReviews/>
   </>;
 }
