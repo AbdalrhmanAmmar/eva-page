@@ -1,14 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // تجاهل أخطاء TypeScript وESLint أثناء البناء
   typescript: {
-    ignoreBuildErrors: true, // يتجاهل جميع أخطاء TypeScript
+    ignoreBuildErrors: true,
   },
   eslint: {
-    ignoreDuringBuilds: true, // يتجاهل أخطاء ESLint
+    ignoreDuringBuilds: true,
   },
 
-  // إعدادات تحسين الصور
   images: {
     remotePatterns: [
       {
@@ -19,22 +17,27 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'https://eva-page-5mw5-eight.vercel.app',
+        hostname: 'eva-page-5mw5-eight.vercel.app',
       },
-  
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app', // السماح بجميع نطاقات Vercel
+      }
     ],
-    // إعدادات إضافية للأداء
+    domains: [
+      'eva-page-5mw5-eight.vercel.app',
+      'localhost'
+    ],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // إعدادات مهمة للنشر على Vercel
-  output: 'standalone', // لتحسين الأداء على Vercel
-  compress: true, // ضغط الملفات تلقائياً
-  productionBrowserSourceMaps: false, // إيقاف إنشاء source maps للعميل
-  swcMinify: true, // استخدام SWC للت minify
+  output: 'standalone',
+  compress: true,
+  productionBrowserSourceMaps: false,
+  swcMinify: true,
 }
 
 module.exports = nextConfig
