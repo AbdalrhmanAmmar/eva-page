@@ -1,9 +1,9 @@
 "use client"
 
 import { X, Send } from 'lucide-react';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { FaWhatsapp  } from "react-icons/fa";
-
+import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,12 +15,20 @@ const WhatsAppButton = () => {
   const defaultMessage = "مرحبا كيف يمكننا مساعدتك؟"; // الرسالة الافتراضية
 
   useEffect(() => {
-    // تأخير ظهور الأيقونة
-    const timer = setTimeout(() => {
+    // تأخير ظهور الأيقونة بعد 3 ثواني
+    const visibilityTimer = setTimeout(() => {
       setIsVisible(true);
     }, 3000);
     
-    return () => clearTimeout(timer);
+    // فتح النافذة تلقائياً بعد 5 ثواني
+    const autoOpenTimer = setTimeout(() => {
+      setIsOpen(true);
+    }, 5000);
+    
+    return () => {
+      clearTimeout(visibilityTimer);
+      clearTimeout(autoOpenTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -60,10 +68,17 @@ const WhatsAppButton = () => {
       {isOpen ? (
         <div className="w-80 bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
           <div className="bg-[#25D366] text-white p-3 flex justify-between items-center">
-            <div className="flex items-center">
-              <FaWhatsapp className="h-5 w-5 mr-2" />
-              <span>محادثة واتساب</span>
+            <div className="flex items-center gap-2">
+              <Image
+                src="/images/32X32 أسود بدون خلفية-01.png"
+                alt="إيفاء Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain"
+              />
+              <span className="font-bold text-lg">ايفاء</span>
             </div>
+            
             <button 
               onClick={() => setIsOpen(false)}
               className="text-white hover:text-gray-200"
@@ -73,12 +88,28 @@ const WhatsAppButton = () => {
           </div>
           
           <div className="p-4 bg-gray-50 h-40 overflow-y-auto">
+            <div className="flex flex-col items-center mb-2">
+              <Image
+                src="/images/32X32 أسود بدون خلفية-01.png"
+                alt="إيفاء Logo"
+                width={64}
+                height={64}
+                className="w-16 h-16 object-contain mb-2"
+              />
+              <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                <span className="relative flex h-2 w-2 mr-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
+                </span>
+                متصل الآن
+              </div>
+            </div>
+            
             <div className="mb-4">
               <div className="bg-gray-200 text-gray-800 p-3 rounded-lg inline-block max-w-xs">
                 {defaultMessage}
               </div>
             </div>
-   
           </div>
           
           <div className="p-3 border-t border-gray-200 flex gap-3">

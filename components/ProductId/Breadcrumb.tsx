@@ -8,6 +8,7 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  className?:string
 }
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {

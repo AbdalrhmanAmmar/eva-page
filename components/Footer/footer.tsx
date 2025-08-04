@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { FaTiktok,FaWhatsapp,FaSnapchatGhost  } from "react-icons/fa";
 import { dir } from "console";
+import ContactForm from "./ContactForm";
 
 
 const services = [
@@ -101,7 +102,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background border-t border-primary/10">
+    <footer className="bg-background border-t border-primary/10 ">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -110,7 +111,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="space-y-4 order-1"
           >
             <Link href="/" className="block">
               <Image
@@ -118,7 +119,7 @@ export default function Footer() {
                 alt="إيفاء Logo"
                 width={120}
                 height={120}
-                className="w-auto h-24"
+                className="w-auto h-24 md:none m-auto"
               />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -145,7 +146,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="space-y-4"
+            className="space-y-4 order-3 md:order-2"
           >
             <h3 className="text-lg font-semibold text-foreground mb-6">خدماتنا</h3>
             <div className="space-y-3">
@@ -174,7 +175,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="space-y-4"
+            className="space-y-4 order-4 md:order-3"
           >
             <h3 className="text-lg font-semibold text-foreground mb-6">معلومات الاتصال</h3>
             <div className="space-y-4">
@@ -209,35 +210,13 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="space-y-4"
+            className="space-y-4 order-2 md:order-4"
           >
             <h3 className="text-lg font-semibold text-foreground mb-6">ارسل رساله</h3>
             <p className="text-sm text-muted-foreground mb-4">
               قم برسال رساله تضمن الخدمه التي تريدها وسنقوم بالتواصل معك في أقرب وقت ممكن.
             </p>
-            <form className="space-y-3">
-              <div className="relative flex flex-col gap-2">
-                <input
-                  type="text"
-                  placeholder="بريد الكتروني او رقم الهاتف"
-                  className="w-full px-4 py-2 bg-primary/5 border border-primary/10 rounded-lg focus:outline-none focus:border-primary/30 transition-colors text-right"
-                />
-                <textarea
-                  rows={3}
-                  placeholder="تفاصيل الرساله "
-                  className="w-full px-4 py-2 bg-primary/5 border border-primary/10 rounded-lg focus:outline-none focus:border-primary/30 transition-colors text-right"
-                >
-                </textarea>
-                
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full px-4 py-2 bg-primary text-black rounded-lg hover:bg-primary/90 transition-colors"
-              >
-               ارسال
-              </motion.button>
-            </form>
+             <ContactForm />
           </motion.div>
         </div>
       </div>

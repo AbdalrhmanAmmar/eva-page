@@ -4,11 +4,17 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Shield, User, Home, Info, Box, Phone } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { useAuthStore } from '@/stores/authStore';
+import LogoutBtn from '../Auth/LogoutBtn';
 
 const Navbar = () => {
+  const token = useAuthStore((state) => state.token);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const pathname = usePathname();
+
+  console.log(token)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,13 +66,18 @@ const Navbar = () => {
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-4 space-x-reverse">
-              <Button 
-                variant="ghost" 
-                className="text-foreground/80 hover:text-foreground hover:bg-primary/10"
-              >
-                <User className="w-4 h-4 ml-2" />
-                تسجيل الدخول
-              </Button>
+              {token ? (
+                <LogoutBtn />
+              ) : (
+                <Button 
+                  variant="ghost" 
+                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10"
+                  onClick={() => router.push('/auth/login')}
+                >
+                  <User className="w-4 h-4 ml-2" />
+                  تسجيل الدخول
+                </Button>
+              )}
               <Button className="btn-gradient">
                 احصل على عرض
               </Button>
@@ -113,9 +124,18 @@ const Navbar = () => {
           <div className="absolute bottom-16 left-0 right-0 glass-card bg-opacity-95 border-t border-border">
             <div className="container-padding py-4">
               <div className="flex flex-col space-y-3">
-                <Button variant="ghost" className="justify-start text-foreground">
+               {!isScrolled ? (
+                <LogoutBtn />
+              ) : (
+                <Button 
+                  variant="ghost" 
+                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10"
+                  onClick={() => router.push('/auth/login')}
+                >
+                  <User className="w-4 h-4 ml-2" />
                   تسجيل الدخول
                 </Button>
+              )}
                 <Button className="btn-gradient justify-center">
                   احصل على عرض
                 </Button>

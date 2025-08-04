@@ -1,7 +1,7 @@
 import './index.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Footer from '@/components/footer';
+import Footer from '@/components/Footer/footer';
 import { ILayout } from '@/interfaces/ILayout';
 import AnalyticsProvider from '@/components/AnalyticsProvider';
 import { Toaster } from 'sonner';

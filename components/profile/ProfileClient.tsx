@@ -96,8 +96,8 @@ useEffect(() => {
   };
 
   fetchUserProfile();
-}, [token]);
-
+}, [token, setUser]); // أضف setUser هنا
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
 
   useEffect(() => {

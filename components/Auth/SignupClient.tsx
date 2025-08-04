@@ -182,11 +182,11 @@ const OTPVerificationStep = ({
   const formattedPhone = `${phone.substring(0, 5)} **** ${phone.substring(9)}`;
 
   // Auto-submit when OTP is complete
-  useEffect(() => {
-    if (otp.length === 6 && !isLoading) {
-      onSubmit({ preventDefault: () => {} } as React.FormEvent);
-    }
-  }, [otp]);
+useEffect(() => {
+  if (otp.length === 6 && !isLoading) {
+    onSubmit({ preventDefault: () => {} } as React.FormEvent);
+  }
+}, [otp, isLoading, onSubmit]); // أضف جميع التبعيات
 
   return (
     <div className="space-y-8">

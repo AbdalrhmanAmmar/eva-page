@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Background from './background';
 import MaintenanceContent from './maintenance-content';
 import NewsletterForm from './newsletter-form';
-import Footer from './footer';
+import Footer from './Footer/footer';
 import CountdownTimer from './countdown-timer';
 import Image from 'next/image';
 

@@ -53,23 +53,33 @@ export default function LoginClient() {
     try {
       const data = await authAPI.login({ phone, password });
 
+      // تحديث الحالة أولاً
       setUser(data.user);
       setToken(data.token);
       setAuthenticated(true);
 
-        setTimeout(() => {
-  console.log("After login state:", useAuthStore.getState());
-  console.log(data.token);
-
-  const { isAuthenticated } = useAuthStore.getState();
-  if (isAuthenticated) {
-    router.push(data.user.role === "admin" ? "/dashboard" : "/profile");
-  }
-}, 1000);
+      // إعادة تحميل الصفحة للتأكد من تحديث الحالة
       router.refresh();
+
+      // الانتظار قليلاً قبل التوجيه للتأكد من تحديث الحالة
+      setTimeout(() => {
+        const redirectPath = data.user.role === "admin" ? "/dashboard" : "/profile";
+        router.push(redirectPath);
+      }, 300); // يمكن تعديل هذا التأخير حسب الحاجة
     } catch (error: any) {
+      console.error("Login error:", error);
+      
+      let errorMessage = "حدث خطأ في الاتصال بالخادم";
+      if (error.response) {
+        if (error.response.status === 401) {
+          errorMessage = "رقم الهاتف أو كلمة المرور غير صحيحة";
+        } else if (error.response.data?.message) {
+          errorMessage = error.response.data.message;
+        }
+      }
+
       setErrors({
-        general: error.message || "حدث خطأ في الاتصال بالخادم",
+        general: errorMessage,
       });
     } finally {
       setIsLoading(false);
@@ -83,7 +93,7 @@ export default function LoginClient() {
     }
   };
 
-  const displayPhone = phone.startsWith('966') ? phone.substring(3) : phone;
+  const displayPhone = phone.startsWith('966') ? phone.substring(3) : phone; 
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
