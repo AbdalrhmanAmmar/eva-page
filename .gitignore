@@ -51,7 +51,6 @@ next-env.d.ts
 # 📁 Folders to ignore
 # ========================
 components/dashboard/
-components/service/
 app/dashboard/
 app/dashboard/layout.tsx
 app/dashboard/page.tsx
