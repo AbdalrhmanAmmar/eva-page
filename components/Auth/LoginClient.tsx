@@ -54,8 +54,8 @@ export default function LoginClient() {
       const data = await authAPI.login({ phone, password });
 
       // تحديث الحالة أولاً
-      setUser(data.user);
-      setToken(data.token);
+setUser((data as any).user);
+      setToken((data as any).token);
       setAuthenticated(true);
 
       // إعادة تحميل الصفحة للتأكد من تحديث الحالة
@@ -63,7 +63,7 @@ export default function LoginClient() {
 
       // الانتظار قليلاً قبل التوجيه للتأكد من تحديث الحالة
       setTimeout(() => {
-        const redirectPath = data.user.role === "admin" ? "/dashboard" : "/profile";
+        const redirectPath = (data as any).user.role === "admin" ? "/dashboard" : "/profile";
         router.push(redirectPath);
       }, 300); // يمكن تعديل هذا التأخير حسب الحاجة
     } catch (error: any) {

@@ -54,4 +54,4 @@ components/dashboard/
 app/dashboard/
 app/dashboard/layout.tsx
 app/dashboard/page.tsx
-app/product/
+app/product/[id]/page.tsx

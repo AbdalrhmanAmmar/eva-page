@@ -257,7 +257,7 @@ useEffect(() => {
                     maxLength={1}
                     value={otp[index] || ''}
                     onChange={(e) => {
-                      const newOtp = [...otp];
+                      const newOtp = [...otp as any];
                       newOtp[index] = e.target.value.replace(/\D/g, '');
                       setOtp(newOtp.join(''));
                       
@@ -518,8 +518,8 @@ const handleSendOTP = async (e: React.FormEvent) => {
     
     // هنا يجب تعديل الكود ليتناسب مع استجابة API الفعلية
 if (response.success) {
-const otpId = response.data?.otpId;
-const expiresAt = response.data?.expiresAt;
+const otpId = response?.data?.otpId as string | undefined;
+const expiresAt = response?.data?.expiresAt as string | undefined;
 
   if (otpId && expiresAt) {
     setPendingPhone(phone);
