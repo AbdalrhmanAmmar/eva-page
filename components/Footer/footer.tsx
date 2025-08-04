@@ -186,10 +186,7 @@ export default function Footer() {
       href={info.href}
       whileHover={{ x: 5 }}
       className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors"
-      style={{
-        flexDirection: info.icon === Phone ? "" : "row",
-        justifyContent: info.icon === Phone ? "flex-start" : "flex-start"
-      }}
+
     >
       <info.icon className="w-5 h-5 mt-0.5" />
       <span 

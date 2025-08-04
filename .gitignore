@@ -55,3 +55,6 @@ app/dashboard/
 app/dashboard/layout.tsx
 app/dashboard/page.tsx
 app/product/[id]/page.tsx
+components/dashboard/Analytics/*
+components/dashboard/Analytics/AnalyticsClient.tsx
+components/dashboard/points/PointsClient.tsx

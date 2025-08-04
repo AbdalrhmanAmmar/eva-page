@@ -6,8 +6,10 @@ import { Menu, X, Shield, User, Home, Info, Box, Phone } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/stores/authStore';
 import LogoutBtn from '../Auth/LogoutBtn';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const router = useRouter();
   const token = useAuthStore((state) => state.token);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
