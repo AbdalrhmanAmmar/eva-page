@@ -19,12 +19,9 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'images.pexels.com',
+        hostname: 'https://eva-page-5mw5-eight.vercel.app',
       },
-      {
-        protocol: 'https',
-        hostname: '**.example.com', // استبدلها بنطاقك
-      }
+  
     ],
     // إعدادات إضافية للأداء
     formats: ['image/avif', 'image/webp'],
