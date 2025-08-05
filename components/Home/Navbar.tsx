@@ -65,7 +65,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-4 space-x-reverse">
 <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary overflow-hidden">
   <Image
-      src="/images/blackrm.png" 
+     src="/blackrm.png" 
     alt="إيفاء Logo"
     width={40}  // تخفيض حجم الصورة الأصلية لتناسب المساحة
     height={40}
