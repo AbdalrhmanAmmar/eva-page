@@ -19,7 +19,7 @@ const nextConfig = {
             remotePatterns: [
               {
                 protocol: 'https',
-                hostname: 'eva-page-e3zq.vercel.app',
+                hostname: 'eva-page-fis354.vercel.app',
                 port: '',
                 pathname: '/images/**',
               },
