@@ -14,6 +14,7 @@ const nextConfig = {
 
   // ✅ إعدادات الصور
   images: {
+     unoptimized: true,
     domains: [
       '**',
       '**',
@@ -23,7 +24,10 @@ const nextConfig = {
     minimumCacheTTL: 60,
     disableStaticImages: false,
     unoptimized: true,
+
+    
   },
+ 
 };
 
 module.exports = nextConfig;
