@@ -58,3 +58,5 @@ app/product/[id]/page.tsx
 components/dashboard/Analytics/*
 components/dashboard/Analytics/AnalyticsClient.tsx
 components/dashboard/points/PointsClient.tsx
+app/dashboard/users/[id]
+app/dashboard/warehouse/[id]

@@ -91,7 +91,7 @@ const Navbar = () => {
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-4 space-x-reverse">
-              {token ? (
+              {/* {token ? (
                 <LogoutBtn />
               ) : (
                 <Button 
@@ -102,7 +102,7 @@ const Navbar = () => {
                   <User className="w-4 h-4 ml-2" />
                   تسجيل الدخول
                 </Button>
-              )}
+              )} */}
               <Button onClick={scrollToFooter} className="btn-gradient">
                 احصل على عرض
               </Button>
