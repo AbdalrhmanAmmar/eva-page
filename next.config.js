@@ -15,7 +15,21 @@ const nextConfig = {
   //   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   // },
 
-    images: { unoptimized: true },
+   images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.example.com",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "randomuser.me", // Add this for loading images from randomuser.me
+        pathname: "/api/portraits/**", // Allow specific path
+      },
+    ],
+  },
+
   
 
   compress: true,
