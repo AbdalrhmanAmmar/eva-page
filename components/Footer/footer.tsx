@@ -133,6 +133,7 @@ export default function Footer() {
   className="w-auto h-24 object-contain" // الأهم هنا
   quality={100} // لضمان الجودة العالية
   priority // إذا كانت الصورة فوق الطية
+  unoptimized={true}
 />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
