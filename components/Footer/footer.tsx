@@ -22,7 +22,6 @@ import { dir } from "console";
 import ContactForm from "./ContactForm";
 import { useRef,useEffect } from "react";
 import { useScrollStore } from "@/stores/scrollStore";
-import blackrm from "@/assets/images/blackrm.png";
 
 
 const services = [
@@ -127,14 +126,14 @@ export default function Footer() {
           >
             <Link href="/" className="block">
        <Image
-  src={blackrm}
+  src="images/blackrm.png"
   alt="إيفاء Logo"
   width={120}
   height={120}
   className="w-auto h-24 object-contain" // الأهم هنا
   quality={100} // لضمان الجودة العالية
   priority // إذا كانت الصورة فوق الطية
-  
+  unoptimized={true}
 />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
