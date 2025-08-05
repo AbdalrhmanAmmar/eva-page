@@ -22,7 +22,7 @@ import { dir } from "console";
 import ContactForm from "./ContactForm";
 import { useRef,useEffect } from "react";
 import { useScrollStore } from "@/stores/scrollStore";
-import blackrm from "@/assets/images/blackrm.png";
+import blackrm from "./../../assets/Images/blackrm.png";
 
 
 const services = [
