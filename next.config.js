@@ -1,28 +1,56 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  productionBrowserSourceMaps: true, // لتسهيل debugging في production
 
-  // ✅ تجاهل أخطاء TypeScript
+  // إعدادات TypeScript
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // تجاهل أخطاء TypeScript أثناء البناء
   },
 
-  // ✅ تجاهل أخطاء ESLint
+  // إعدادات ESLint
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // تجاهل أخطاء ESLint أثناء البناء
   },
 
-  // ✅ إعدادات الصور
+  // إعدادات الصور
   images: {
-    domains: [
-      'eva-page-fis354-one.vercel.app',
-      'evasaudi.com',
+    // السماح بجميع النطاقات
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // تقبل أي نطاق
+        port: '',
+        pathname: '**', // تقبل أي مسار
+      },
+      {
+        protocol: 'http',
+        hostname: '**', // تقبل أي نطاق (حتى غير الآمن)
+        port: '',
+        pathname: '**',
+      },
     ],
+    
+    // الأبعاد القياسية للصور
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
-    disableStaticImages: false,
-    unoptimized: true,
+    
+    // إعدادات الأداء
+    minimumCacheTTL: 60, // الحد الأدنى لوقت التخزين المؤقت (بالثواني)
+    disableStaticImages: false, // تمكين الصور الثابتة
+    unoptimized: false, // تمكين تحسين الصور (افضل تعطيله إذا كنت تريد التحكم الكامل)
+    
+    // إعدادات متقدمة
+    formats: ['image/webp', 'image/jpeg', 'image/png'], // تنسيقات الصور المفضلة
+    dangerouslyAllowSVG: true, // السماح بتحميل SVG (بحذر)
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;", // سياسة أمان أساسية
+  },
+
+  // إعدادات إضافية
+  experimental: {
+    appDir: true, // تمكين دليل app الجديد (إذا كنت تستخدمه)
+    optimizeCss: true, // تحسين CSS
+    scrollRestoration: true, // استعادة وضع التمرين
   },
 };
 
