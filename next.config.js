@@ -15,19 +15,16 @@ const nextConfig = {
   //   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   // },
 
-   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'eva-page-e3zq.vercel.app',
-        port: '',
-        pathname: '/my-bucket/**',
-      
-      },
-    ],
-  },
-
-  
+     images: {
+            remotePatterns: [
+              {
+                protocol: 'https',
+                hostname: 'eva-page-e3zq.vercel.app',
+                port: '',
+                pathname: '/images/**',
+              },
+            ],
+          },  
 
   compress: true,
   productionBrowserSourceMaps: false,
