@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -26,14 +24,21 @@ export default function EmailFieldWithVerification({
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuthStore();
 
-  // تحديث الحالة عند تغيير currentEmail من الخارج
   useEffect(() => {
     setEmail(currentEmail);
   }, [currentEmail]);
 
   const handleUpdateEmail = async () => {
-    if (!email || email === currentEmail) return;
-    
+    if (!email || email === currentEmail) {
+      toast.warning("لم تقم بتغيير البريد الإلكتروني");
+      return;
+    }
+
+    if (!token) {
+      toast.error("يجب تسجيل الدخول أولاً");
+      return;
+    }
+
     try {
       setIsLoading(true);
       const formData = new FormData();
@@ -52,16 +57,21 @@ export default function EmailFieldWithVerification({
   };
 
   const handleVerifyOtp = async () => {
+    if (!otp || otp.length !== 6) {
+      toast.warning("يجب إدخال كود التحقق المكون من 6 أرقام");
+      return;
+    }
+
     try {
       setIsLoading(true);
       const { success } = await authAPI.verifyEmailCode(userId, parseInt(otp));
       
       if (success) {
         toast.success("تم التحقق من البريد الإلكتروني بنجاح");
-        setEmail(email); // تأكيد استخدام الإيميل الجديد
+        setEmail(email);
         setIsEditing(false);
         setIsPendingVerification(false);
-        onUpdateSuccess(); // تنبيه المكون الأب بالتحديث
+        onUpdateSuccess();
       } else {
         toast.error("كود التحقق غير صحيح");
       }
@@ -87,6 +97,7 @@ export default function EmailFieldWithVerification({
               onChange={(e) => setOtp(e.target.value)}
               placeholder="أدخل كود التحقق المكون من 6 أرقام"
               className="flex-1 px-4 py-2 bg-background border border-border/10 rounded-lg focus:outline-none focus:border-primary"
+              maxLength={6}
             />
             <button
               onClick={handleVerifyOtp}
@@ -107,7 +118,7 @@ export default function EmailFieldWithVerification({
           />
           <button
             onClick={handleUpdateEmail}
-            disabled={isLoading || email === currentEmail}
+            disabled={isLoading || email === currentEmail || !email}
             className="px-4 py-2 bg-primary text-background rounded-lg disabled:opacity-50"
           >
             {isLoading ? "جاري الإرسال..." : "تأكيد"}
