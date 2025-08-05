@@ -9,7 +9,8 @@ import LogoutBtn from '../Auth/LogoutBtn';
 import { useRouter } from 'next/navigation';
 import { useScrollStore } from '@/stores/scrollStore';
 import Image from 'next/image';
-import blackrmImage from "../public/images/blackrm.png"
+import blackrmImage from "../../public/blackrm.png"
+
 
 
 const Navbar = () => {
