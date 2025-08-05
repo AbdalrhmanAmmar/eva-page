@@ -22,6 +22,7 @@ import { dir } from "console";
 import ContactForm from "./ContactForm";
 import { useRef,useEffect } from "react";
 import { useScrollStore } from "@/stores/scrollStore";
+import blackrmImage from "@/public/images/blackrm.png";
 
 
 const services = [
@@ -126,7 +127,7 @@ export default function Footer() {
           >
             <Link href="/" className="block">
        <Image
-  src="/images/blackrm.png"
+  src={blackrmImage}
   alt="إيفاء Logo"
   width={120}
   height={120}
