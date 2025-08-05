@@ -23,10 +23,12 @@ const nextConfig = {
     // إعدادات الأبعاد
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+
+    
     
     // إعدادات التخزين المؤقت
     minimumCacheTTL: 60,
-    formats: ['image/webp', 'image/jpeg', 'image/png'],
+    formats: ['image/webp', 'image/avif'], // ✅ صيغ مدعومة فقط
   },
 };
 

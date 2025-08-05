@@ -64,13 +64,14 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex items-center space-x-4 space-x-reverse">
 <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary overflow-hidden">
-  <img
+  <Image
      src="/images/evaa.jpg"
     alt="إيفاء Logo"
     width={40}  // تخفيض حجم الصورة الأصلية لتناسب المساحة
     height={40}
     className="w-full h-full object-cover"  // الأهم هنا
     quality={100}
+     layout="responsive"
   
   />
 </div>
