@@ -127,7 +127,7 @@ export default function Footer() {
           >
             <Link href="/" className="block">
        <Image
-  src={blackrmImage}
+  src="/assets/images/blackrm.png"
   alt="إيفاء Logo"
   width={120}
   height={120}
