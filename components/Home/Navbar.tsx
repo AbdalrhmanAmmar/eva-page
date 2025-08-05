@@ -8,6 +8,7 @@ import { useAuthStore } from '@/stores/authStore';
 import LogoutBtn from '../Auth/LogoutBtn';
 import { useRouter } from 'next/navigation';
 import { useScrollStore } from '@/stores/scrollStore';
+import Image from 'next/image';
 
 
 
@@ -66,7 +67,12 @@ const Navbar = () => {
   <img
      src="/images/evaa.jpg"
     alt="إيفاء Logo"
-className="w-full h-full object-cover" />
+    width={40}  // تخفيض حجم الصورة الأصلية لتناسب المساحة
+    height={40}
+    className="w-full h-full object-cover"  // الأهم هنا
+    quality={100}
+  
+  />
 </div>
               <div className="text-2xl font-bold text-gradient">EVA</div>
             </div>
